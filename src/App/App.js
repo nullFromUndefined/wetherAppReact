@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import { fetchWeather, fetchPictureCity, toogleTheme, toogleList, calcTemperature } from './helpers';
+import { fetchWeather, fetchPictureCity, toogleTheme, toogleList } from './helpers';
+import WeatherWidget from './../WeatherWidget/WeatherWidget';
+import ImagesCity from './../ImagesCity/ImagesCity';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class App extends React.Component {
     if (!city) return;
 
     const valueCity = await fetchWeather(city);
-    this.setState({ valueCity })
+    this.setState({ valueCity });
     const pictures = await fetchPictureCity(this.state.valueCity.name, this.state.valueCity.weather[0].main)
     
     this.setState({ pictures: pictures.results, requestPictures:  pictures.results})
@@ -39,18 +41,12 @@ class App extends React.Component {
 render() {
   return (
       <div className="App">
-        <div class="change-theme">Сменить тему: <span onClick={toogleTheme}>темная</span></div>
+        <div className="change-theme">Сменить тему: <span onClick={toogleTheme}>темная</span></div>
         <div className="form-group">
             <input type="text" name="user_name" id="input-city"/>
             <button onClick={this.watchWeather}>Посмотреть погоду</button>
         </div>
-        { !!this.state.valueCity &&     
-            <div className="weather">
-              <div>{this.state.valueCity.name}</div>
-              <div><img src={`http://openweathermap.org/img/w/${this.state.valueCity.weather[0].icon}.png`} alt="" /></div>
-              <div>{calcTemperature(this.state.valueCity.main.temp)} {"\u2103"}</div>
-            </div>
-        }
+        { !!this.state.valueCity &&  <WeatherWidget valueCity={this.state.valueCity} /> }
         { !!this.state.pictures &&  
             <div className="images-block">
               <div className="filter-group">
@@ -64,16 +60,7 @@ render() {
                   Переключить дизайн на: <span>список</span>
                 </div>
               </div>
-              
-              <div className="images-city">
-                {this.state.pictures.map((el) => {
-                  return (
-                  <div className="image" key={el.id}>
-                    <img src={el.urls.small} alt="" />
-              </div>
-            )
-          })}
-        </div>
+              <ImagesCity pictures={this.state.pictures} />
       </div> }
       </div>
     );
@@ -81,6 +68,5 @@ render() {
 }
 
 export default App;
-
 
 
