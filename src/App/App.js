@@ -17,24 +17,29 @@ class App extends React.Component {
     if (!city) return;
 
     const valueCity = await fetchWeather(city);
-    this.setState({ valueCity });
-    const pictures = await fetchPictureCity(this.state.valueCity.name, this.state.valueCity.weather[0].main)
+    if (valueCity.cod == 404) return;
+    const pictures = await fetchPictureCity(valueCity.name, valueCity.weather[0].main);
     
-    this.setState({ pictures: pictures.results, requestPictures:  pictures.results})
+    this.setState({ 
+      pictures: pictures.results, 
+      requestPictures:  pictures.results, 
+      valueCity 
+    })
   }
 
-  filterImages = (event) => {
+  filterImages = event => {
     const el = event.target;
     const filterConfig = el.dataset.filter;
-    document.querySelector(".choice").classList.remove("choice");
-    el.classList.add("choice");
-  
-    this.setState({ pictures: this.state.requestPictures.filter((el) => {
-          if (filterConfig === "width") return el.width > el.height;
-          else if (filterConfig === "height") return el.width < el.height;
-          return true;
-        }) 
-      })
+    if (filterConfig) {
+      document.querySelector(".choice").classList.remove("choice");
+      el.classList.add("choice");
+      this.setState({ pictures: this.state.requestPictures.filter((el) => {
+            if (filterConfig === "width") return el.width > el.height;
+            else if (filterConfig === "height") return el.width < el.height;
+            return true;
+          }) 
+        })
+    }
   }
   
   
