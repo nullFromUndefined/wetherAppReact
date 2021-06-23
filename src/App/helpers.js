@@ -27,3 +27,6 @@ export function toogleList(event) {
     document.querySelector(".images-city").classList.toggle("two-columns");
   }
   
+  export function calcTemperature(temp) {
+    return Math.floor(temp - 273.15);
+  }

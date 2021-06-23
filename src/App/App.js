@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { fetchWeather, fetchPictureCity, toogleTheme, toogleList } from './helpers'
-import WeatherWidget from './../WeatherWidget/WeatherWidget';
+import { fetchWeather, fetchPictureCity, toogleTheme, toogleList, calcTemperature } from './helpers';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,7 +44,13 @@ render() {
             <input type="text" name="user_name" id="input-city"/>
             <button onClick={this.watchWeather}>Посмотреть погоду</button>
         </div>
-        { !!this.state.valueCity && <WeatherWidget state={this.state.valueCity} /> }
+        { !!this.state.valueCity &&     
+            <div className="weather">
+              <div>{this.state.valueCity.name}</div>
+              <div><img src={`http://openweathermap.org/img/w/${this.state.valueCity.weather[0].icon}.png`} alt="" /></div>
+              <div>{calcTemperature(this.state.valueCity.main.temp)} {"\u2103"}</div>
+            </div>
+        }
         { !!this.state.pictures &&  
             <div className="images-block">
               <div className="filter-group">
