@@ -61,8 +61,8 @@ render() {
                     <span data-filter="width">Горизонтальные&nbsp;</span> 
                     <span data-filter="height">Вертикальные</span>
                 </div>
-                <div className="filter" onClick={toogleList}>
-                  Переключить дизайн на: <span>список</span>
+                <div className="filter">
+                  Переключить дизайн на: <span onClick={toogleList}>список</span>
                 </div>
               </div>
               <ImagesCity pictures={this.state.pictures} />
