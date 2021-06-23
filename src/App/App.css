@@ -1,0 +1,110 @@
+.App {
+  text-align: center;
+}
+
+.dark-theme {
+  color: white;
+  background-color: #807e7e;
+}
+
+.change-theme {
+  text-align: right;
+  font-size: 0.8rem;
+  margin-right: 20px;
+}
+
+.change-theme span {
+  color: blue;
+  cursor: pointer;
+}
+
+.change-theme span:hover {
+  text-decoration: underline;
+}
+
+.filter-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group {
+  margin: 20px;
+}
+
+input {
+  padding: .375rem .75rem;
+  line-height: 1.5;
+  color: #495057;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+button {
+  color: #6c757d;
+  border-color: #6c757d;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+}
+
+button:hover {
+  border: 1px solid #6c757d;
+}
+
+.weather {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.filter span {
+  color: blue;
+  cursor: pointer;
+}
+
+.filter span:hover {
+  text-decoration: underline;
+}
+
+.filter span.choice {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+.images-block {
+  width: 800px;
+  margin: auto;
+}
+
+.images-city {
+  column-count: 4;
+}
+
+.image img {
+  display: block;
+  width: 200px;
+  box-shadow: 0px 1px 1px 0px rgb(0 0 0 / 18%);
+}
+
+.image {
+  padding: 3px;
+}
+
+.two-columns {
+  margin: auto;
+  padding: 1px;
+  column-count: 2;
+  width: 450px;
+}
