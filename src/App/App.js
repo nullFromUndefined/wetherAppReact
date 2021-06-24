@@ -65,8 +65,17 @@ render() {
                   Переключить дизайн на: <span onClick={toogleList}>список</span>
                 </div>
               </div>
-              <ImagesCity pictures={this.state.pictures} />
-      </div> }
+              {/* <ImagesCity pictures={this.state.pictures} /> */}
+              <div className="images-city">
+                {this.state.pictures.map((el) => {
+                    return (
+                    <div className="image" key={el.id}>
+                        <img src={el.urls.small} alt="" />
+                    </div>
+                      )
+                  })}
+              </div>
+            </div> }
       </div>
     );
   }
